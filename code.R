@@ -18,3 +18,22 @@ plot(newEPC$Global_active_power ~ newEPC$datetime, type = "l", ylab = "Global Ac
 dev.off()
 
 #plot 3
+plot(newEPC$Sub_metering_1 ~ newEPC$datetime, type = "l", ylab = "Energy sub metering", xlab = "")
+lines(newEPC$Sub_metering_2 ~ newEPC$datetime, type = "l", col = "red")
+lines(newEPC$Sub_metering_3 ~ newEPC$datetime, type = "l", col = "blue")
+legend("topright", col = c("black", "red", "blue"), legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty = 1, lwd = 2, cex = 0.5)
+dev.copy(png, 'Plot 3.png', heigh = 480, width = 480)
+dev.off()
+
+#plot 4
+par(mfrow = c(2,2), mar = c(4,4,2,1), oma = c(0,0,2,0))
+plot(newEPC$Global_active_power ~ newEPC$datetime, type = "l", ylab = "Global Active Power (kilowatts)", xlab = "")
+newEPC$Voltage <- as.numeric(newEPC$Voltage)
+plot(newEPC$Voltage ~ newEPC$datetime, type = "l", ylab = "Voltage", xlab = "datetime")
+plot(newEPC$Sub_metering_1 ~ newEPC$datetime, type = "l", ylab = "Energy sub metering", xlab = "")
+lines(newEPC$Sub_metering_2 ~ newEPC$datetime, type = "l", col = "red")
+lines(newEPC$Sub_metering_3 ~ newEPC$datetime, type = "l", col = "blue")
+newEPC$Global_reactive_power <- as.numeric(newEPC$Global_reactive_power)
+plot(newEPC$Global_reactive_power ~ newEPC$datetime, type = "l", ylab="Global_reactive_power", xlab="datetime")
+dev.copy(png, 'Plot 4.png', height = 480, width = 480)
+dev.off()
